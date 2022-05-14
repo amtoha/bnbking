@@ -26,7 +26,7 @@ function App() {
   const [annualIncome, setAnnualIncome] = useState(balance * 4320)
   const [signer, setSigner] = useState("")
   const contractAddress = '0xDA624bA6c18C935213d4377995bB7d334c2fBF93'
-  const contractAddress2 = '0xDA624bA6c18C935213d4377995bB7d334c2fBF93'
+  const contractAddress3 = '0xDA624bA6c18C935213d4377995bB7d334c2fBF93'
 
   const getTVL = (provider) => {
   } 
