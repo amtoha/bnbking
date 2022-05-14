@@ -1,0 +1,11 @@
+footer {
+    grid-area: footer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer_social {
+    display: flex;
+    column-gap: 37px;
+}
