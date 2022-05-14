@@ -4,7 +4,7 @@ import Context from "../../context"
 import {success, normal, errorMsg} from '../Notifications'
 import { ethers } from 'ethers'
 
-function Metamask({setWallet, setBalance, getContractInfo, setContract, provider, setRefLink, countIncomes, setSigner, contractAddress, getTVL}) {
+function Metamask({setWallet, setBalance, getContractInfo, setContract, setContract2, provider, setRefLink, countIncomes, setSigner, contractAddress, contractAddress2, getTVL}) {
 
   const {wallet} = useContext(Context)
   const isMobile = ()=>{
@@ -103,7 +103,7 @@ function Metamask({setWallet, setBalance, getContractInfo, setContract, provider
       const {status, address, connectedStatus} = await connectWallet(type)
       if (connectedStatus) {
         setWallet(address)
-        setRefLink(`https://bnb-king.finance/?ref=${address}`)
+        setRefLink(`https://bnb-king.vercel.app/?ref=${address}`)
         getAccountBalance(address)
         if (type == "first") {
           success("Сonnection Succeeded")
@@ -118,7 +118,9 @@ function Metamask({setWallet, setBalance, getContractInfo, setContract, provider
           const signer = provider.getSigner()
           setSigner(signer)
           const contract = new ethers.Contract(contractAddress, ERC20_ABI, provider.getSigner())
+          const contract2 = new ethers.Contract(contractAddress2, ERC20_ABI, provider.getSigner())
           setContract(contract)
+          setContract2(contract2)
         }
       } else {
         setWallet("")

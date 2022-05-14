@@ -20,13 +20,14 @@ function App() {
   const [crowns, setCrowns] = useState(0.0)
   const [tvl, setTvl] = useState(0.0)
   const [contract, setContract] = useState("")
+  const [contract2, setContract2] = useState("")
   const [refLink, setRefLink] = useState("")
   const [dailyIncome, setDailyIncome] = useState(balance * 12 / 100)
   const [weeklyIncome, setWeeklyIncome] = useState(balance * ((1 + 0.12) ** 7))
   const [annualIncome, setAnnualIncome] = useState(balance * 4320)
   const [signer, setSigner] = useState("")
   const contractAddress = '0xDA624bA6c18C935213d4377995bB7d334c2fBF93'
-  const contractAddress3 = '0xDA624bA6c18C935213d4377995bB7d334c2fBF93'
+  const contractAddress2 = '0x671E8B9a688ee1AFd98053Cfdc2c854c3F604652'
 
   const getTVL = (provider) => {
   } 
@@ -69,7 +70,7 @@ function App() {
 
   const buyCrowns = async (amount, address, ref) => {
     try {
-      const daiWithSigner = contract.connect(signer)
+      const daiWithSigner = contract2.connect(signer)
       const referral = ref != null ? ref : address
       await daiWithSigner
       .buyCrowns(referral, {value: ethers.utils.parseUnits(amount.toString(), 18)})
@@ -84,7 +85,7 @@ function App() {
   const reinvestCrowns = (ref) => {
     try {
       const referral = ref != null ? ref : wallet
-      const daiWithSigner = contract.connect(signer)
+      const daiWithSigner = contract2.connect(signer)
       daiWithSigner.hatchCrowns(referral)
       .then(() => {
         success("Transaction successfully sent")
@@ -99,7 +100,7 @@ function App() {
 
   const claimCrowns = () => {
     try {
-      const daiWithSigner = contract.connect(signer)
+      const daiWithSigner = contract2.connect(signer)
       daiWithSigner.sellCrowns()
       .then(() => {
         success("Transaction successfully sent")
@@ -145,11 +146,13 @@ function App() {
             setRefLink={setRefLink}
             setSigner={setSigner}
             setContract={setContract}
+            setContract2={setContract2}
             setBalance={setBalance}
             setWallet={setWallet}
             getContractInfo={getContractInfo}
             countIncomes={countIncomes}
             contractAddress={contractAddress}
+            contractAddress2={contractAddress2}
             getTVL={getTVL}
           />
           <Footer/>
